@@ -1,9 +1,15 @@
 <?php
 
 // importo la classe. Il nome del file della classe deve avere lo stesso nome della classe
-require_once __DIR__ . '/Model/User.php';
+require_once __DIR__ . '/Model/Membership.php';
 require_once __DIR__ . '/Model/Address.php';
+require_once __DIR__ . '/Model/User.php';
+require_once __DIR__ . '/Model/Employee.php';
+require_once __DIR__ . '/Model/PremiumUser.php';
 require_once __DIR__ . '/data/db.php';
+
+$dipendente = new Employee('Mario', 'Rossi', 'mario@rossi.com', 40, new Address('Via delle Betulle','Roma',00100), 1);
+
 
 // //istanza della classe User
 // $ugo = new User('Ugo', 'De Ughi', 'ugo@deughi.com');
@@ -46,9 +52,18 @@ require_once __DIR__ . '/data/db.php';
     <?php foreach($db as $user): ?>
       <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title"><?php echo $user->getFullName()  ?></h5>
+          <h5 class="card-title"><?php echo $user->getName()  ?> <?php echo $user->lastname  ?></h5>
           <h6 class="card-subtitle mb-2 text-body-secondary">Sconto: <?php echo $user->getDiscount() ?>%</h6>
-          <h4>Indirizzo: <?php echo $user->address->getFullAddress() ?></h4>
+          <!-- Nullsafe oparator (?): se address è null non restituisce un errore  -->
+          <h4>Indirizzo: <?php echo $user->address?->getFullAddress() ?></h4>
+          <h3>Nazione: <?php echo Address::$country ?></h3>
+          <p>Livello: <?php echo $user->level ?? '-' ?></p>
+
+          <?php if(isset($user->membership)): ?>
+            <p>Livello premium: <?php echo $user->membership?->name ?> </p>
+            <p><?php echo $user->getFullInfo() ?> </p>
+          <?php endif; ?>
+
         </div>
       </div>
     <?php endforeach; ?>
