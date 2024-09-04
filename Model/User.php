@@ -12,7 +12,7 @@ class User {
   public $discount = 0;
 
   // passando le proprietà al costruttore rendo obbligatori determinati dati
-  function __construct($_name, $_lastname, $_email, $_age, Address $_address){
+  function __construct(string $_name,string $_lastname,string $_email,int $_age, Address $_address){
     $this->name = $_name;
     $this->lastname = $_lastname;
     $this->email = $_email;

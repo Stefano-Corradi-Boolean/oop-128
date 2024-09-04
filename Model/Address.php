@@ -2,11 +2,12 @@
 
 class Address 
 {
-  public $street;
-  public $city;
-  public $postcode;
 
-  public function __construct($street, $city, $postcode)
+  public function __construct(
+      public string $street,
+      public string  $city,
+      public string  $postcode
+    )
   {
     $this->street = $street;
     $this->city = $city;
@@ -16,4 +17,5 @@ class Address
   public function getFullAddress(){
     return $this->street . ' ' . $this->city . ' ' . $this->postcode;
   }
+  
 }
