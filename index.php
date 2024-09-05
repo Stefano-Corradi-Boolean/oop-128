@@ -10,6 +10,29 @@ require_once __DIR__ . '/data/db.php';
 
 $dipendente = new Employee('Mario', 'Rossi', 'mario@rossi.com', 40, new Address('Via delle Betulle','Roma',00100), 1);
 
+function multiplication($int) {
+  if (!is_int($int)) {
+    throw new Exception('Is not a number');
+  }
+  return $int*5;
+ }
+
+ try{
+   var_dump(multiplication(10));
+ }catch(Exception $e){
+  echo "<h2>Errore: " . $e->getMessage() . " </h2>";
+ }
+ 
+
+// try{
+//   $ugo = new User('Ugo', 'De Ughi', 'ugo@deughi.com', 20, new Address('via dei platani','Milano', '20100'));
+
+//   var_dump($ugo);
+// } catch(Exception $e){
+//   echo 'Attenzione! Errore: ' . $e->getMessage();
+// }
+
+
 
 // //istanza della classe User
 // $ugo = new User('Ugo', 'De Ughi', 'ugo@deughi.com');

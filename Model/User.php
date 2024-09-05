@@ -13,8 +13,8 @@ class User {
 
   // passando le proprietà al costruttore rendo obbligatori determinati dati
   public function __construct(string $_name,string $_lastname,string $_email,int $_age, Address $_address = null){
-    $this->name = $_name;
-    $this->lastname = $_lastname;
+    $this->setName($_name);
+    $this->setLastname($_lastname);
     $this->email = $_email;
     $this->age = $_age;
     $this->address = $_address;
@@ -25,7 +25,19 @@ class User {
   public function setName($_name){
     // faccio tutti i controlli de validità del dato
     // solo se è valido do il valore alla variabile altrimenti restituisco un errore
+    if(empty($_name) || strlen($_name) < 3){
+      throw new Exception('Il nome deve avere almeno 3 caratteri');
+    }
     $this->name = $_name;
+  }
+
+  public function setLastname($_lastname){
+    // faccio tutti i controlli de validità del dato
+    // solo se è valido do il valore alla variabile altrimenti restituisco un errore
+    if(empty($_lastname) || strlen($_lastname) < 3){
+      throw new Exception('Il cognome deve avere almeno 3 caratteri');
+    }
+    $this->lastname = $_lastname;
   }
 
   
